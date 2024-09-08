@@ -8,11 +8,17 @@ performer_id SERIAL PRIMARY KEY,
 name VARCHAR(60) UNIQUE
 );
 
+CREATE TABLE IF NOT EXISTS Album (
+album_id SERIAL PRIMARY KEY,
+album_name VARCHAR(60) UNIQUE,
+date INTEGER CHECK(date>=2000)
+);
+
 CREATE TABLE IF NOT EXISTS Track (
 track_id SERIAL PRIMARY KEY,
 title VARCHAR(50) UNIQUE,
-length INTEGER CHECK(length>=1),
-FOREIGN KEY(album_name) REFERENCES album(album_name)
+length FLOAT (length>=1),
+FOREIGN KEY(album_id) REFERENCES album(album_id)
 );
 
 CREATE TABLE IF NOT EXISTS Album (

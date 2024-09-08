@@ -1,7 +1,7 @@
-SELECT SUM FROM Genre
-WHERE genre_id=1;
+SELECT COUNT (name_performer) FROM GenrePerformer;
 
-SELECT SUM (track) FROM AlbumPerformer;
+SELECT COUNT (name_album) FROM AlbumPerformer
+BETWEEN date 2019 AND 2020;
 
 SELECT AVG (length) FROM TrackCollect;
 
