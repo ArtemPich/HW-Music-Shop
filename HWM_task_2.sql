@@ -1,16 +1,18 @@
-SELECT MAX (length) FROM Track;
+SELECT title, length FROM Track
+ORDER BY length DESC
+LIMIT 1;
 
 SELECT title, length FROM Track
-WHERE length >= 3.05;
+WHERE length >= 185;
 
 SELECT collection_name, year_collection FROM Collection
-BETWEEN year_collection 2018 AND 2020;
+WHERE year_collection BETWEEN 2018 AND 2020;
 
 SELECT name FROM Performer
-WHERE name LIKE '%%';
+WHERE name NOT LIKE '% %';
 
 SELECT name FROM Track
-WHERE title LIKE 'my%'
-OR title LIKE '%my'
-OR title LIKE '%my%'
+WHERE title LIKE 'my %'
+OR title LIKE '% my'
+OR title LIKE '% my %'
 OR title LIKE 'my';

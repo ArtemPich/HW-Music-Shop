@@ -11,42 +11,36 @@ name VARCHAR(60) UNIQUE
 CREATE TABLE IF NOT EXISTS Album (
 album_id SERIAL PRIMARY KEY,
 album_name VARCHAR(60) UNIQUE,
-date INTEGER CHECK(date>=2000)
+date INTEGER
 );
 
 CREATE TABLE IF NOT EXISTS Track (
 track_id SERIAL PRIMARY KEY,
 title VARCHAR(50) UNIQUE,
-length FLOAT (length>=1),
-FOREIGN KEY(album_id) REFERENCES album(album_id)
-);
-
-CREATE TABLE IF NOT EXISTS Album (
-album_id SERIAL PRIMARY KEY,
-album_name VARCHAR(60) UNIQUE,
-date INTEGER CHECK(date>=2000)
+length INTEGER CHECK (length>=1),
+id_album INTEGER REFERENCES Album(album_id)
 );
 
 CREATE TABLE IF NOT EXISTS Collection (
 collection_id SERIAL PRIMARY KEY,
 collection_name VARCHAR(50) UNIQUE,
-year_collection INTEGER CHECK(year_collection>=2000)
+year_collection INTEGER
 );
 
 CREATE TABLE IF NOT EXISTS GenrePerformer (
-genre_performer_id SERIAL PRIMARY KEY(genre_id, performer_id),
-type_genre INTEGER REFERENCES Genre(type),
-name_performer INTEGER REFERENCES Performer(name)
+genre_performer_id SERIAL PRIMARY KEY,
+type_genre INTEGER REFERENCES Genre(genre_id),
+name_performer INTEGER REFERENCES Performer(performer_id)
 );
 
 CREATE TABLE IF NOT EXISTS AlbumPerformer (
-album_performer_id SERIAL PRIMARY KEY(album_id, performer_id),
-album_name_p INTEGER REFERENCES Album(album_name),
-name_album INTEGER REFERENCES Performer(name)
+album_performer_id SERIAL PRIMARY KEY,
+album_name_p INTEGER REFERENCES Album(album_id),
+name_album INTEGER REFERENCES Performer(performer_id)
 );
 
 CREATE TABLE IF NOT EXISTS TrackCollect (
-track_collection_id SERIAL PRIMARY KEY(track_id, collection_id),
-title_col INTEGER REFERENCES Track(title),
-collection_name_t INTEGER REFERENCES Collection(collection_name)
+track_collection_id SERIAL PRIMARY KEY,
+title_col INTEGER REFERENCES Track(track_id),
+collection_name_t INTEGER REFERENCES Collection(collection_id)
 );
