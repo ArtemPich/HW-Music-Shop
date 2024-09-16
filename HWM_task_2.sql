@@ -11,7 +11,7 @@ WHERE year_collection BETWEEN 2018 AND 2020;
 SELECT name FROM Performer
 WHERE name NOT LIKE '% %';
 
-SELECT name FROM Track
+SELECT title FROM Track
 WHERE title LIKE 'my %'
 OR title LIKE '% my'
 OR title LIKE '% my %'
