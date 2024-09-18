@@ -1,7 +1,7 @@
-SELECT type, name_performer FROM GenrePerformer P
-LEFT JOIN Genre G ON performer_id P = genre_id G
-GROUP BY genre_id
-ORDER BY COUNT(performer_id);
+SELECT Genre.type, GenrePerformer.name_performer FROM Genre
+LEFT JOIN GenrePerformer ON Genre.genre_id = GenrePerformer.type_genre
+GROUP BY Genre.genre_id
+ORDER BY COUNT(GenrePerformer.name_performer);
 
 SELECT COUNT (track_id) FROM Track
 JOIN Album ON id_album = album_id
@@ -19,11 +19,10 @@ WHERE name NOT IN (
     WHERE date = 2020
     );
 
-SELECT album_name_p, name_album FROM AlbumPerformer
-JOIN Collection ON collection_id = track_collection_id
-JOIN TrackCollection ON title_col = track_id
-JOIN Track ON id_album = album_id
-JOIN Album ON album_id = album_performer_id
-JOIN AlbumPerformer ON album_id = album_performer_id
-JOIN Performer ON name_album = performer_id
-WHERE name = 'The Beatles';
+SELECT DISTINCT Collection.collection_name FROM Collection
+JOIN TrackCollect ON Collection.collection_name = TrackCollect.title_col
+JOIN Track ON TrackCollect.title_col = Track.title
+JOIN Album ON Track.title = Album.album_name
+JOIN AlbumPerformer ON Album.album_name = AlbumPerformer.name_album
+JOIN Performer ON AlbumPerformer.name_album = Performer.name
+WHERE Performer.name = 'The Beatles';

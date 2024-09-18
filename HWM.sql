@@ -14,17 +14,18 @@ album_name VARCHAR(60) UNIQUE,
 date INTEGER
 );
 
+CREATE TABLE IF NOT EXISTS Collection (
+collection_id SERIAL PRIMARY KEY,
+collection_name VARCHAR(50) UNIQUE,
+year_collection INTEGER
+);
+
 CREATE TABLE IF NOT EXISTS Track (
 track_id SERIAL PRIMARY KEY,
 title VARCHAR(50) UNIQUE,
 length INTEGER CHECK (length>=1),
 id_album INTEGER REFERENCES Album(album_id)
-);
-
-CREATE TABLE IF NOT EXISTS Collection (
-collection_id SERIAL PRIMARY KEY,
-collection_name VARCHAR(50) UNIQUE,
-year_collection INTEGER
+id_collect INTEGER REFERENCES Collection(collection_id)
 );
 
 CREATE TABLE IF NOT EXISTS GenrePerformer (
